@@ -1,0 +1,4 @@
+---
+# defaults file for roles/jenkins
+gpg_key_dir: /usr/share/keyrings/jenkins-keyring.asc
+jenkins_version: "2.463" 

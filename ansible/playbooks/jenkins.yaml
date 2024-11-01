@@ -1,0 +1,11 @@
+---
+- name: Install jenkins server
+  hosts: jenkins
+  gather_facts: false
+  become: true
+
+  roles:
+    - docker
+    - role: java
+    - role: jenkins
+    - role: helm

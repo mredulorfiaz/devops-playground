@@ -1,0 +1,3 @@
+---
+jdk_version: "openjdk-17-jdk"
+update_apt_cache: true

@@ -1,0 +1,23 @@
+---
+- name: Download the GPG key
+  command: |
+    curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key -o {{ gpg_key_dir }}
+
+- name: Add the Jenkins repository
+  apt_repository:
+    repo: "deb [signed-by={{ gpg_key_dir }}] https://pkg.jenkins.io/debian binary/"
+    state: present
+    filename: /etc/apt/sources.list.d/jenkins.list
+    update_cache: true
+
+- name: Install Jenkins
+  apt:
+    name: "jenkins={{ jenkins_version }}"
+    state: present
+  notify: Restart jenkins
+
+- name: Ensure Jenkins is running and enabled
+  service:
+    name: jenkins
+    state: started
+    enabled: yes

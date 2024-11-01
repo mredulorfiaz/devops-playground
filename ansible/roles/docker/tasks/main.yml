@@ -1,0 +1,65 @@
+---
+- name: Update package manager cache
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Ensure multiple packages are installed
+  package:
+    name:
+      - ca-certificates
+      - curl
+    state: present
+  become: true
+
+- name: Ensure directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download the GPG key
+  command: |
+    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+  become: true
+
+- name: Add docker apt repository
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+  become: true
+
+- name: Update package manager cache
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Ensure docker is installed
+  package:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+  become: true
+
+- name: Ensure docker is started
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Add current user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+  become: true
+
+- name: Add jenkins user to docker group
+  user:
+    name: "jenkins"
+    groups: docker
+    append: yes
+  become: true
