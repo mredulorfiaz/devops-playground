@@ -1,0 +1,12 @@
+#cloud-config
+groups:
+  - devops
+users:
+  - name: orfiaz
+    groups: [ devs, devops ]
+    sudo: [ "ALL=(ALL) NOPASSWD:ALL" ]
+    shell: /bin/bash
+    ssh-authorized-keys: 
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVNBqDR3bX1QcVmO05vT+pk0/fYLz50O0dBW/H9HuladZneNy6vfWTgPCRCA/o99+1D79V3afIkQJJ0mO9UP9XgVUJguBQ+iuhh+4ryhNioaeIcsyaatcAXwnMOazCEHSfPEoTl5LIV5MFGkttICtzleaK79c6t5tJ4Ix1SUYi2wqQEKx5aSHVXZ80evVu9FzGvSB4kKabOW19ar8e2pLxyyANmTBO3WftZ6ECZulzxmuqBPfoXgSjsRa3Oqtqw4fQAFTwatrzAvGIFO+/+4hPNNFGfaHXZ8bs7qc7oPdb+Y01PAUIZbKK8dyDHbvjmjp+8EC8Yl+mdYFzKAMZPHABkJ9hAq6qRHfcIj7tIaA05YS6rfrV3YhHrsfkikqOKw0i7DwfzrCbZ6YakleOdqj/9W5jdUFsWO4UHgJO0Z5YAfkEzzkTOoloViLIVLMVTM2SQJnM8wn3ASxOBiz8TUBYNauu8d8+2jBNkPgFsZqrD5eOJ/R+NNQR2Vxqyytv/QM= orfiaz@n0b0dy
+
+package_update: true
