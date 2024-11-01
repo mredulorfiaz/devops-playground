@@ -1,0 +1,9 @@
+# helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard --version 6.0.8 --values dashboard-values.yaml
+
+extraArgs:
+  - --enable-skip-login
+  - --disable-settings-authorizer
+  - --enable-insecure-login
+  - --insecure-bind-address=0.0.0.0
+  - --token-ttl=3600
+
