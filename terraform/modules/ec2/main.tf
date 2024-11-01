@@ -5,7 +5,7 @@ resource "aws_instance" "dev_instance" {
   vpc_security_group_ids      = data.aws_security_groups.security_groups.ids
   associate_public_ip_address = true
 
-  user_data = base64encode(file("${path.module}/user-data.yaml"))
+  user_data = base64encode(file("${path.module}/conf/user-data"))
 
   subnet_id = data.aws_subnets.subnets.ids[0]
   tags = {
