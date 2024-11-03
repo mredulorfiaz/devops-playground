@@ -12,6 +12,7 @@ resource "aws_instance" "dev_instance" {
     Name = var.instance_name
   }
   iam_instance_profile = var.iam_instance_profile
+  depends_on = [aws_security_group.allow_ssh]
 }
 
 resource "aws_security_group" "allow_ssh" {

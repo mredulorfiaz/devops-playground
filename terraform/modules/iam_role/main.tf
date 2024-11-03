@@ -26,4 +26,5 @@ resource "aws_iam_role" "role" {
 resource "aws_iam_role_policy_attachments_exclusive" "attach_policy" {
   role_name   = var.role_name
   policy_arns = var.policy_arns
+  depends_on = [aws_iam_role.role]
 }
