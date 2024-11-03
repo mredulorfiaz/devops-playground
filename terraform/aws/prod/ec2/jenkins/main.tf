@@ -16,3 +16,7 @@ module "ec2" {
   region               = local.region
   iam_instance_profile = local.iam_instance_profile
 }
+
+output "instance_ip" {
+  value       = module.ec2.instance_ip
+}

@@ -47,6 +47,6 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-output "name" {
+output "instance_ip" {
   value = aws_instance.dev_instance.public_ip
 }
